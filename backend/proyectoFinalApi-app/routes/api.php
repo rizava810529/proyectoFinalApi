@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\EnlaceController;
+use App\Http\Controllers\PaginaController;
 
 
 
@@ -41,6 +42,17 @@ Route::controller(EnlaceController::class)->group(
         Route::get('enlace/{id}','show');
         Route::post('enlace/{id}', 'store');
         Route::put('enlace/{id}', 'update');
-        Route::delete('/usuario/{id}', 'destroy');
+        Route::delete('/enlace/{id}', 'destroy');
+    }
+);
+
+Route::controller(PaginaController::class)->group(
+
+    function () {
+        Route::get('/paginas', 'index');
+        Route::get('pagina/{id}','show');
+        Route::post('pagina/{id}', 'store');
+        Route::put('pagina/{id}', 'update');
+        Route::delete('/pagina{id}', 'destroy');
     }
 );

@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
 
         $enlaceSeeder = new EnlaceSeeder();
 	    $enlaceSeeder->run();
+
+        $paginaSeeder = new PaginaSeeder();
+        $paginaSeeder->run();
     }
 }
