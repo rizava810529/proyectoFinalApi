@@ -17,5 +17,8 @@ class DatabaseSeeder extends Seeder
 
         $rolSeeder = new RolSeeder();
 	    $rolSeeder->run();
+
+        $enlaceSeeder = new EnlaceSeeder();
+	    $enlaceSeeder->run();
     }
 }

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\EnlaceController;
 
 
 
@@ -30,5 +31,16 @@ Route::controller(RolController::class)->group(
         Route::post('/rol/{id}', 'store');
         Route::put('/rol/{id}', 'update');
         Route::delete('/rol/{id}', 'destroy');
+    }
+);
+
+Route::controller(EnlaceController::class)->group(
+
+    function () {
+        Route::get('/enlaces', 'index');
+        Route::get('enlace/{id}','show');
+        Route::post('enlace/{id}', 'store');
+        Route::put('enlace/{id}', 'update');
+        Route::delete('/usuario/{id}', 'destroy');
     }
 );
