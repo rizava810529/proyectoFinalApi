@@ -14,5 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         $bitacoraSeeder = new BitacoraSeeder();
 	    $bitacoraSeeder->run();
+
+        $rolSeeder = new RolSeeder();
+	    $rolSeeder->run();
     }
 }
