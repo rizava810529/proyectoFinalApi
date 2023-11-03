@@ -26,5 +26,8 @@ class DatabaseSeeder extends Seeder
 
         $usuarioSeeder = new UsuarioSeeder();
         $usuarioSeeder->run();
+
+        $personaSeeder = new PersonaSeeder();
+        $personaSeeder->run();
     }
 }

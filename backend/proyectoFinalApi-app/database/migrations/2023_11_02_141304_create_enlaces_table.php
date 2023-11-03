@@ -13,15 +13,23 @@ return new class extends Migration
     {
         Schema::create('enlaces', function (Blueprint $table) {
             $table->id();
-    $table->string('idenlace'); // Campo 'idenlace' de tipo cadena
-    $table->string('idpagina'); // Campo 'idpagina' de tipo cadena
-    $table->string('idrol'); // Campo 'idrol' de tipo cadena
-    $table->string('descripcion'); // Campo 'descripcion' de tipo cadena
-    $table->string('fechacreacion'); // Campo 'fechacreacion' de tipo cadena
-    $table->string('fechamodificacion'); // Campo 'fechamodificacion' de tipo cadena
-    $table->string('usuariocreacion'); // Campo 'usuariocreacion' de tipo cadena
-    $table->string('usuariomodificacion'); // Campo 'usuariomodificacion' de tipo cadena
-    $table->timestamps();
+            $table->string('idenlace'); // Campo 'idenlace' de tipo cadena
+            $table->unsignedBigInteger('idpagina'); // Campo 'idpagina' de tipo cadena
+            
+            $table->string('descripcion'); // Campo 'descripcion' de tipo cadena
+            $table->string('fechacreacion'); // Campo 'fechacreacion' de tipo cadena
+            $table->string('fechamodificacion'); // Campo 'fechamodificacion' de tipo cadena
+            $table->string('usuariocreacion'); // Campo 'usuariocreacion' de tipo cadena
+            $table->string('usuariomodificacion'); // Campo 'usuariomodificacion' de tipo cadena
+            $table->timestamps();
+            // Definición de la clave foránea 'idrol' que hace referencia a la tabla 'rols'
+            $table->unsignedBigInteger('idrol');
+            $table->foreign('idrol')->references('id')->on('rols');    
+            // Definición de la clave foránea 'idpagina' que hace referencia a la tabla 'paginas'
+            $table->foreign('idpagina')->references('id')->on('paginas');
+
+
+
         });
     }
 

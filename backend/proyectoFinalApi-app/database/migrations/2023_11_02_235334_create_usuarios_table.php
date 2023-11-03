@@ -13,17 +13,20 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('idpersona')->unsigned();
+            $table->unsignedBigInteger('idpersona');
             $table->string('usuario', 100);
             $table->string('clave', 255);
             $table->boolean('habilitado');
             $table->date('fecha');
-            $table->bigInteger('idrol')->unsigned();
-            $table->timestamp('fechacreacion')->useCurrent();
-            $table->timestamp('fechamodificacion')->useCurrent();
-            $table->bigInteger('usuariocreacion')->unsigned();
-            $table->bigInteger('usuariomodificacion')->unsigned();
+            $table->unsignedBigInteger('idrol');
+            $table->timestamp('fechacreacion');
+            $table->timestamp('fechamodificacion')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->unsignedBigInteger('usuariocreacion');
+            $table->unsignedBigInteger('usuariomodificacion');
             $table->timestamps();
+           // Definición de la clave foránea corregida
+           $table->foreign('idrol')->references('id')->on('rols');
+           $table->foreign('idpersona')->references('id')->on('personas');
         });
     }
 

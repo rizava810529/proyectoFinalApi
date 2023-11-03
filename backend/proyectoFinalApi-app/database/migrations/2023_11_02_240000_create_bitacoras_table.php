@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('navegador');
             $table->string('usuario');
             $table->timestamps();
+             // la llave foránea
+             $table->foreign('idusuario')->references('id')->on('usuarios');
         });
     }
 

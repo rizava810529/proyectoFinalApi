@@ -7,6 +7,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\EnlaceController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PersonaController;
 
 
 
@@ -66,5 +67,16 @@ Route::controller(UsuarioController::class)->group(
         Route::post('usuario/{id}', 'store');
         Route::put('usuario/{id}', 'update');
         Route::delete('/usuario{id}', 'destroy');
+    }
+);
+
+Route::controller(PersonaController::class)->group(
+
+    function () {
+        Route::get('/personas', 'index');
+        Route::get('persona/{id}','show');
+        Route::post('persona/{id}', 'store');
+        Route::put('persona/{id}', 'update');
+        Route::delete('/persona{id}', 'destroy');
     }
 );
