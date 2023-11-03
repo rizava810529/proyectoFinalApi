@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Faker\Generator as Faker;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pagina>
  */
@@ -17,16 +17,14 @@ class PaginaFactory extends Factory
     public function definition(): array
     {
         return [
-            'usuariocreacion' => $this->faker->name,
-            'usuariomodificacion' => $this->faker->name,
-            'url' => $this->faker->url,
-            'estado' => $this->faker->randomElement(['Activo', 'Inactivo']),
-            'nombre' => $this->faker->name,
-            'descripcion' => $this->faker->sentence,
-            'icono' => $this->faker->word,
-            'tipo' => $this->faker->word,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'usuariocreacion' => factory(App\Usuario::class),
+            'usuariomodificacion' => factory(App\Usuario::class),
+            'url' => $faker->url,
+            'estado' => $faker->word,
+            'nombre' => $faker->word,
+            'descripcion' => $faker->sentence,
+            'icono' => $faker->word,
+            'tipo' => $faker->word,
         ];
         
     }

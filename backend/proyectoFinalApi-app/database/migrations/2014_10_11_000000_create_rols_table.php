@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rols', function (Blueprint $table) {
-            $table->id();
-            $table->string('rol');
+            $table->id(); // Esto crea la columna 'id' como primary key autoincremental
+            $table->string('rol', 255);
             $table->date('fechacreacion');
             $table->date('fechamodificacion');
-            $table->string('usuariocreacion');
-            $table->string('usuariomodificacion');
-            $table->timestamps(); // Esto agrega los campos created_at y updated_at
+            $table->string('usuariocreacion', 255);
+            $table->string('usuariomodificacion', 255);
+            $table->timestamps(); // Esto crea las columnas 'created_at' y 'updated_at'
         });
     }
 

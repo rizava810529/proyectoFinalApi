@@ -1,31 +1,34 @@
 <?php
+
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Faker\Generator as Faker;
 use App\Models\Usuario; // Asegúrate de importar el modelo Usuario
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use Faker\Generator as Faker;
+use App\Models\Persona; 
+use App\Models\Rol;
 
 class UsuarioFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'id' => random_int(1, 100),
-            'idpersona' => random_int(1, 100),
-            'usuario' => $this->faker->userName, // Utiliza $this->faker en lugar de $faker
-            'clave' => bcrypt('password123'),
+            'idpersona' => Persona::factory(), // Asegúrate de importar el modelo Persona
+            'usuario' => $this->faker->userName,
+            'clave' => bcrypt('password'), // Aquí puedes generar una contraseña segura
             'habilitado' => $this->faker->boolean,
             'fecha' => $this->faker->date,
-            'idrol' => random_int(1, 10),
+            'idrol' => Rol::factory(), // Asegúrate de importar el modelo Rol
             'fechacreacion' => now(),
             'fechamodificacion' => now(),
-            'usuariocreacion' => random_int(1, 100),
-            'usuariomodificacion' => random_int(1, 100),
+            'usuariocreacion' => Usuario::factory(),
+            'usuariomodificacion' => Usuario::factory(),
         ];
     }
 }

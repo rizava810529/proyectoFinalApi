@@ -29,5 +29,18 @@ class DatabaseSeeder extends Seeder
 
         $personaSeeder = new PersonaSeeder();
         $personaSeeder->run();
+
+        /* $this->call([
+            // Otros seeders
+            BitacoraSeeder::class,
+            RolSeeder::class,
+            EnlaceSeeder::class,
+            PaginaSeeder::class,
+            UsuarioSeeder::class,
+            PersonaSeeder::class
+
+        ]);
+ */
+
     }
 }

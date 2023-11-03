@@ -1,12 +1,11 @@
 <?php
 
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Bitacora;
+use App\Models\Usuario;
+use Faker\Generator as Faker;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Bitacora>
- */
 class BitacoraFactory extends Factory
 {
     /**
@@ -16,19 +15,20 @@ class BitacoraFactory extends Factory
      */
     public function definition(): array
     {
-       
-        $faker = \Faker\Factory::create();
-
         return [
-            'idbitacora' => $faker->uuid, // Genera un UUID para idbitacora
-            'bitacora' => $faker->sentence, // Puedes personalizar este campo
-            'idusuario' => $faker->numberBetween(1, 100), // Número aleatorio para idusuario
-            'fecha' => $faker->date, // Fecha aleatoria
-            'hora' => $faker->time, // Hora aleatoria
-            'ip' => $faker->ipv4, // Dirección IP aleatoria
-            'so' => $faker->word, // Sistema operativo aleatorio
-            'navegador' => $faker->userAgent, // Agente de usuario (navegador) aleatorio
-            'usuario' => $faker->userName, // Nombre de usuario aleatorio
+            'idbitacora' => $this->faker->uuid,
+            'bitacora' => $this->faker->sentence,
+            'idusuario' => Usuario::factory(), // Utiliza Usuario::factory() para crear una instancia de Usuario
+            'fecha' => $this->faker->date,
+            'hora' => $this->faker->time,
+            'ip' => $this->faker->ipv4,
+            'so' => $this->faker->word,
+            'navegador' => $this->faker->word,
+            'usuario' => $this->faker->userName,
+            'created_at' => now(),
+            'updated_at' => now(),
+            
         ];
     }
 }
+

@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('personas', function (Blueprint $table) {
-            $table->id(); // Usar la clave primaria predeterminada 'id'
-            $table->string('primer_nombre');
-            $table->string('segundo_nombre')->nullable();
-            $table->string('primer_apellido');
-            $table->string('segundo_apellido')->nullable();
-            $table->timestamp('fecha_creacion');
+            $table->id(); // Esto crea la columna 'id' como primary key autoincremental
+            $table->string('primer_nombre', 255);
+            $table->string('segundo_nombre', 255)->nullable();
+            $table->string('primer_apellido', 255);
+            $table->string('segundo_apellido', 255)->nullable();
+            $table->timestamp('fecha_creacion')->useCurrent();
             $table->timestamp('fecha_modificacion')->useCurrent();
-            $table->timestamps();
+            $table->timestamps(); // Esto crea las columnas 'created_at' y 'updated_at'
         });
         
     }

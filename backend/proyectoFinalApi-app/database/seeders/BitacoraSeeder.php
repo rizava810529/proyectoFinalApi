@@ -13,6 +13,6 @@ class BitacoraSeeder extends Seeder
      */
     public function run(): void
     {
-        Bitacora::factory(10)->create(); 
+        Bitacora::factory()->count(50)->create();
     }
 }

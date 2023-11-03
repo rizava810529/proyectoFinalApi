@@ -12,6 +12,6 @@ class PaginaSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Pagina::factory(10)->create();
+        \App\Models\Pagina::factory(100)->create();
     }
 }

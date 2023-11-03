@@ -12,21 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Esto crea la columna 'id' como primary key autoincremental
             $table->unsignedBigInteger('idpersona');
             $table->string('usuario', 100);
             $table->string('clave', 255);
-            $table->boolean('habilitado');
+            $table->tinyInteger('habilitado');
             $table->date('fecha');
             $table->unsignedBigInteger('idrol');
-            $table->timestamp('fechacreacion');
-            $table->timestamp('fechamodificacion')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps(); // Esto crea las columnas 'created_at' y 'updated_at'
+            $table->unsignedBigInteger('fechacreacion');
+            $table->unsignedBigInteger('fechamodificacion');
             $table->unsignedBigInteger('usuariocreacion');
             $table->unsignedBigInteger('usuariomodificacion');
-            $table->timestamps();
-           // Definición de la clave foránea corregida
-           $table->foreign('idrol')->references('id')->on('rols');
-           $table->foreign('idpersona')->references('id')->on('personas');
+            
+            $table->foreign('idpersona')->references('id')->on('personas');
+            $table->foreign('idrol')->references('id')->on('rols');
         });
     }
 
