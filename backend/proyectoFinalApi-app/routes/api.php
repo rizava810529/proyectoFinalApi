@@ -6,6 +6,7 @@ use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\EnlaceController;
 use App\Http\Controllers\PaginaController;
+use App\Http\Controllers\UsuarioController;
 
 
 
@@ -54,5 +55,16 @@ Route::controller(PaginaController::class)->group(
         Route::post('pagina/{id}', 'store');
         Route::put('pagina/{id}', 'update');
         Route::delete('/pagina{id}', 'destroy');
+    }
+);
+
+Route::controller(UsuarioController::class)->group(
+
+    function () {
+        Route::get('/usuarios', 'index');
+        Route::get('usuario/{id}','show');
+        Route::post('usuario/{id}', 'store');
+        Route::put('usuario/{id}', 'update');
+        Route::delete('/usuario{id}', 'destroy');
     }
 );

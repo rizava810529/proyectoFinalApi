@@ -23,5 +23,8 @@ class DatabaseSeeder extends Seeder
 
         $paginaSeeder = new PaginaSeeder();
         $paginaSeeder->run();
+
+        $usuarioSeeder = new UsuarioSeeder();
+        $usuarioSeeder->run();
     }
 }
