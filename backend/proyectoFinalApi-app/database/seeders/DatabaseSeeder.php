@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $bitacoraSeeder = new BitacoraSeeder();
+       /*  $bitacoraSeeder = new BitacoraSeeder();
 	    $bitacoraSeeder->run();
 
         $rolSeeder = new RolSeeder();
@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
 
         $personaSeeder = new PersonaSeeder();
         $personaSeeder->run();
-
-        /* $this->call([
+ */
+     $this->call([
             // Otros seeders
             BitacoraSeeder::class,
             RolSeeder::class,
@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
             UsuarioSeeder::class,
             PersonaSeeder::class
 
-        ]);
- */
+        ]); 
+ 
 
     }
 }

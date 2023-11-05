@@ -27,8 +27,8 @@ class UsuarioFactory extends Factory
             'idrol' => Rol::factory(), // Asegúrate de importar el modelo Rol
             'fechacreacion' => now(),
             'fechamodificacion' => now(),
-            'usuariocreacion' => Usuario::factory(),
-            'usuariomodificacion' => Usuario::factory(),
+            'usuariocreacion' => 1,
+            'usuariomodificacion' => 1,
         ];
     }
 }

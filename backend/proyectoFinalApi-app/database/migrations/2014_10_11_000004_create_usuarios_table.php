@@ -20,9 +20,8 @@ return new class extends Migration
             $table->date('fecha');
             $table->unsignedBigInteger('idrol');
             $table->timestamps(); // Esto crea las columnas 'created_at' y 'updated_at'
-            $table->unsignedBigInteger('fechacreacion');
-            $table->unsignedBigInteger('fechamodificacion');
-            $table->unsignedBigInteger('usuariocreacion');
+            $table->date('fechacreacion');
+            $table->timestamp('fechamodificacion')->default(\DB::raw('CURRENT_TIMESTAMP'));            $table->unsignedBigInteger('usuariocreacion');
             $table->unsignedBigInteger('usuariomodificacion');
             
             $table->foreign('idpersona')->references('id')->on('personas');

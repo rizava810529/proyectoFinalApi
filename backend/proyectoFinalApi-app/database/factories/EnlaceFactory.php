@@ -3,27 +3,24 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Faker\Generator as Faker;
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Enlace>
- */
+use App\Models\Pagina;
+use App\Models\Enlace; // Asegúrate de importar el modelo Enlace
+use App\Models\Usuario; // Asegúrate de importar el modelo Usuario
+
 class EnlaceFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Enlace::class;
+
+    public function definition()
     {
         return [
-            'idenlace' => $faker->uuid,
-            'idpagina' => factory(App\Pagina::class),
-            'descripcion' => $faker->sentence,
-            'fechacreacion' => $faker->date,
-            'fechamodificacion' => $faker->date,
-            'usuariocreacion' => factory(App\Usuario::class),
-            'usuariomodificacion' => factory(App\Usuario::class),
+            'idenlace' => $this->faker->uuid, // Usa $this->faker en lugar de $faker
+            'idpagina' => Pagina::factory(), // Utiliza la fábrica de Pagina
+            'descripcion' => $this->faker->sentence, // Usa $this->faker en lugar de $faker
+            'fechacreacion' => $this->faker->date, // Usa $this->faker en lugar de $faker
+            'fechamodificacion' => $this->faker->date, // Usa $this->faker en lugar de $faker
+            'usuariocreacion' => Usuario::factory(), // Utiliza la fábrica de Usuario
+            'usuariomodificacion' => Usuario::factory(), // Utiliza la fábrica de Usuario
         ];
     }
 }

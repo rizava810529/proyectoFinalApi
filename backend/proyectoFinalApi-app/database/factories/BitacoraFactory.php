@@ -1,34 +1,33 @@
 <?php
 
 namespace Database\Factories;
-use Illuminate\Database\Eloquent\Factories\Factory;
+
 use App\Models\Bitacora;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Usuario;
-use Faker\Generator as Faker;
+
+
+
 
 class BitacoraFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Bitacora::class;
+
+    public function definition()
     {
         return [
-            'idbitacora' => $this->faker->uuid,
+            'idbitacora' => $this->faker->unique()->randomNumber,
             'bitacora' => $this->faker->sentence,
-            'idusuario' => Usuario::factory(), // Utiliza Usuario::factory() para crear una instancia de Usuario
+            'idusuario' => function () {
+                $user = Usuario::inRandomOrder()->first();
+                return $user ? $user->id : Usuario::factory();
+            },
             'fecha' => $this->faker->date,
             'hora' => $this->faker->time,
             'ip' => $this->faker->ipv4,
-            'so' => $this->faker->word,
-            'navegador' => $this->faker->word,
+            'so' => $this->faker->userAgent,
+            'navegador' => $this->faker->userAgent,
             'usuario' => $this->faker->userName,
-            'created_at' => now(),
-            'updated_at' => now(),
-            
         ];
     }
 }
-
