@@ -9,4 +9,9 @@ class Pagina extends Model
 {
     use HasFactory;
     protected $table ='paginas';
+    protected $fillable = [
+        'fechacreacion', 'fechamodificacion', 'usuariocreacion', 'usuariomodificacion', 'url', 'estado', 'nombre', 'descripcion', 'icono', 'tipo',
+    ];
+    
+    
 }

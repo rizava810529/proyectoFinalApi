@@ -14,18 +14,24 @@ return new class extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id(); // Esto crea la columna 'id' como primary key autoincremental
             $table->unsignedBigInteger('idpersona');
-            $table->string('usuario', 100);
+            $table->string('usuario', 100)->nullable();
             $table->string('clave', 255);
             $table->tinyInteger('habilitado');
             $table->date('fecha');
             $table->unsignedBigInteger('idrol');
             $table->timestamps(); // Esto crea las columnas 'created_at' y 'updated_at'
             $table->date('fechacreacion');
-            $table->timestamp('fechamodificacion')->default(\DB::raw('CURRENT_TIMESTAMP'));            $table->unsignedBigInteger('usuariocreacion');
+            $table->timestamp('fechamodificacion')->default(\DB::raw('CURRENT_TIMESTAMP'));           
+            $table->timestamp('usuariocreacion')->useCurrent();
+
+
+
+
             $table->unsignedBigInteger('usuariomodificacion');
             
-            $table->foreign('idpersona')->references('id')->on('personas');
+            $table->foreign('idpersona')->references('id')->on('personas')->onDelete('NO ACTION');
             $table->foreign('idrol')->references('id')->on('rols');
+           
         });
     }
 

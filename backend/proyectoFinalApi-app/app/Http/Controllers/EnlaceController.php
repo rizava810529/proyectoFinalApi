@@ -16,47 +16,37 @@ class EnlaceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         try {
             $validated = $request->validate([
-                
-                'idenlace' => 'required', // Validación personalizada para 'idenlace'
-                'idpagina' => 'required', // Validación personalizada para 'idpagina'
-                'idrol' => 'required', // Validación personalizada para 'idrol'
-                'descripcion' => 'required', // Validación personalizada para 'descripcion'
-                'fechacreacion' => 'required', // Validación personalizada para 'fechacreacion'
-                'fechamodificacion' => 'required', // Validación personalizada para 'fechamodificacion'
-                'usuariocreacion' => 'required', // Validación personalizada para 'usuariocreacion'
-                'usuariomodificacion' => 'required', // Validación personalizada para 'usuariomodificacion'
+                'idenlace' => 'required',
+                'idpagina' => 'required',
+                'idrol' => 'required',
+                'descripcion' => 'required',
+                'fechacreacion' => 'required',
+                'fechamodificacion' => 'required',
+                'usuariocreacion' => 'required',
+                'usuariomodificacion' => 'required',
             ]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 422);
         }
         
-       
-        $alumno->idenlace = $request->idenlace; // Asignación de 'idenlace'
-        $alumno->idpagina = $request->idpagina; // Asignación de 'idpagina'
-        $alumno->idrol = $request->idrol; // Asignación de 'idrol'
-        $alumno->descripcion = $request->descripcion; // Asignación de 'descripcion'
-        $alumno->fechacreacion = $request->fechacreacion; // Asignación de 'fechacreacion'
-        $alumno->fechamodificacion = $request->fechamodificacion; // Asignación de 'fechamodificacion'
-        $alumno->usuariocreacion = $request->usuariocreacion; // Asignación de 'usuariocreacion'
-        $alumno->usuariomodificacion = $request->usuariomodificacion; // Asignación de 'usuariomodificacion'
-        $alumno->save();
+        $enlace = new Enlace();
+        $enlace->idenlace = $request->idenlace;
+        $enlace->idpagina = $request->idpagina;
+        $enlace->idrol = $request->idrol;
+        $enlace->descripcion = $request->descripcion;
+        $enlace->fechacreacion = $request->fechacreacion;
+        $enlace->fechamodificacion = $request->fechamodificacion;
+        $enlace->usuariocreacion = $request->usuariocreacion;
+        $enlace->usuariomodificacion = $request->usuariomodificacion;
+        $enlace->save();
         
-        return response()->json("Alumno guardado correctamente");
-        
+        return response()->json("Enlace guardado correctamente");
     }
 
     /**
@@ -64,7 +54,6 @@ class EnlaceController extends Controller
      */
     public function show(Enlace $enlace)
     {
-        $enlace = Enlace::find($id);
         return response()->json($enlace);
     }
 
@@ -83,21 +72,22 @@ class EnlaceController extends Controller
     {
         try {
             $validated = $request->validate([
-                
-                'idenlace' => 'required', // Validación personalizada para 'idenlace'
-                'idpagina' => 'required', // Validación personalizada para 'idpagina'
-                'idrol' => 'required', // Validación personalizada para 'idrol'
-                'descripcion' => 'required', // Validación personalizada para 'descripcion'
-                'fechacreacion' => 'required', // Validación personalizada para 'fechacreacion'
-                'fechamodificacion' => 'required', // Validación personalizada para 'fechamodificacion'
-                'usuariocreacion' => 'required', // Validación personalizada para 'usuariocreacion'
-                'usuariomodificacion' => 'required', // Validación personalizada para 'usuariomodificacion'
+                'idenlace' => 'required',
+                'idpagina' => 'required',
+                'idrol' => 'required',
+                'descripcion' => 'required',
+                'fechacreacion' => 'required',
+                'fechamodificacion' => 'required',
+                'usuariocreacion' => 'required',
+                'usuariomodificacion' => 'required',
             ]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 422);
         }
-                        
         
+        $enlace->update($request->all());
+        
+        return response()->json("Enlace actualizado correctamente");
     }
 
     /**
@@ -105,8 +95,7 @@ class EnlaceController extends Controller
      */
     public function destroy(Enlace $enlace)
     {
-        $enlace = Enlace::find($id);
         $enlace->delete();
-        return "Enlace eliminado correctamente";
+        return response()->json("Enlace eliminado correctamente");
     }
 }

@@ -23,8 +23,9 @@ return new class extends Migration
             $table->timestamps(); // Esto crea las columnas 'created_at' y 'updated_at'
             $table->unsignedBigInteger('idrol')->default(1);
 
-            $table->foreign('idpagina')->references('id')->on('paginas');
             $table->foreign('idrol')->references('id')->on('rols');
+               
+            $table->foreign('idpagina')->references('id')->on('paginas')->onDelete('cascade');
 
 
 

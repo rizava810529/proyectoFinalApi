@@ -84,31 +84,28 @@ class BitacoraController extends Controller
 {
     try {
         $validated = $request->validate([
-           
-            'idbitacora' => 'required|numeric', // Agregar validación para idbitacora
-            'bitacora' => 'required|string', // Agregar validación para bitacora
-            'idusuario' => 'required|numeric', // Agregar validación para idusuario
-            'fecha' => 'required|date', // Agregar validación para fecha
-            'hora' => 'required', // Puedes agregar validación para hora según tu formato
-            'ip' => 'required|ip', // Agregar validación para IP
-            'so' => 'required|string', // Agregar validación para sistema operativo
-            'navegador' => 'required|string', // Agregar validación para navegador
-            'usuario' => 'required|string', // Agregar validación para usuario
+            'idbitacora' => 'required|numeric',
+            'bitacora' => 'required|string',
+            'idusuario' => 'required|numeric',
+            'fecha' => 'required|date',
+            'hora' => 'required',
+            'ip' => 'required|ip',
+            'so' => 'required|string',
+            'navegador' => 'required|string',
+            'usuario' => 'required|string',
         ]);
     } catch (Exception $e) {
         return response()->json(['error' => $e->getMessage()], 422);
     }
 
-    // Buscar el alumno por su ID
-    $alumno = Alumno::find($id);
+    // Buscar la bitácora por su ID
+    $bitacora = Bitacora::find($id);
 
-    if (!$alumno) {
-        return response()->json(['error' => 'Alumno no encontrado'], 404);
+    if (!$bitacora) {
+        return response()->json(['error' => 'Bitácora no encontrada'], 404);
     }
 
-   
-    // Actualizar los campos de la bitácora (puedes usar el mismo enfoque que en la función store)
-    $bitacora = new Bitacora();
+    // Actualizar los campos de la bitácora
     $bitacora->idbitacora = $request->input('idbitacora');
     $bitacora->bitacora = $request->input('bitacora');
     $bitacora->idusuario = $request->input('idusuario');
@@ -120,17 +117,25 @@ class BitacoraController extends Controller
     $bitacora->usuario = $request->input('usuario');
     $bitacora->save();
 
-    return response()->json("Alumno y Bitácora actualizados correctamente");
+    return response()->json("Bitácora actualizada correctamente");
 }
+
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bitacora $bitacora)
-    {
-        $bitacora = Bitacora::find($id);
-        $bitacora->delete();
-        return "Bitacora eliminada correctamente";
+    public function destroy($id)
+{
+    $bitacora = Bitacora::find($id);
+
+    if (!$bitacora) {
+        return response()->json(['error' => 'Bitácora no encontrada'], 404);
     }
+
+    $bitacora->delete();
+
+    return response()->json('Bitácora eliminada correctamente');
+}
+
 }
